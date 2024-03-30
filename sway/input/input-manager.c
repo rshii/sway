@@ -229,6 +229,20 @@ static void handle_new_input(struct wl_listener *listener, void *data) {
 
 	input_device->wlr_device = device;
 	input_device->identifier = input_device_get_identifier(device);
+
+    // HACK HERE
+	struct sway_input_device *sway_device;
+	wl_list_for_each(sway_device, &input->devices, link) {
+        if (strcmp(sway_device->identifier, input_device->identifier) == 0) {
+            free(input_device->identifier);
+            const char *fmt = "%s_1";
+            int len = snprintf(NULL, 0, fmt, sway_device->identifier) + 1;
+            input_device->identifier = malloc(len);
+            snprintf(input_device->identifier, len, fmt, sway_device->identifier);
+            break;
+        }
+    }
+    //
 	wl_list_insert(&input->devices, &input_device->link);
 
 	sway_log(SWAY_DEBUG, "adding device: '%s'",
