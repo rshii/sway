@@ -1,0 +1,12 @@
+libwlroots-dev
+libjson-c-dev
+libpcre3-dev
+libwayland-dev
+wayland-protocols
+libxkbcommon-dev
+libpango-1.0-0
+libcairo2-dev
+libgles-dev
+libevdev-dev
+libinput-dev
+libdrm-dev
